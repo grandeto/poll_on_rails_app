@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Poll:</strong>
+  <%= @poll_option.poll_id %>
+</p>
+
+<p>
+  <strong>Option:</strong>
+  <%= @poll_option.option %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @poll_option.priority %>
+</p>
+
+<%= link_to 'Edit', edit_poll_option_path(@poll_option) %> |
+<%= link_to 'Back', poll_options_path %>

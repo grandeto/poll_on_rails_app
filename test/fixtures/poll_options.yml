@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  poll: one
+  poll_id: 1
+  option: MyString
+  priority: 1
+
+two:
+  poll: two
+  poll_id: 1
+  option: MyString
+  priority: 1
