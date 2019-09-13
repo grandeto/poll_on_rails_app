@@ -1,62 +1,15 @@
 class PollOptionsController < ApplicationController
-  before_action :set_poll_option, only: [:show, :edit, :update, :destroy]
+  include ApplicationHelper
 
-  # GET /poll_options
-  # GET /poll_options.json
-  def index
-    @poll_options = PollOption.all
-  end
-
-  # GET /poll_options/1
-  # GET /poll_options/1.json
-  def show
-  end
-
-  # GET /poll_options/new
-  def new
-    @poll_option = PollOption.new
-  end
-
-  # GET /poll_options/1/edit
-  def edit
-  end
-
-  # POST /poll_options
-  # POST /poll_options.json
-  def create
-    @poll_option = PollOption.new(poll_option_params)
-
-    respond_to do |format|
-      if @poll_option.save
-        format.html { redirect_to @poll_option, notice: 'Poll option was successfully created.' }
-        format.json { render :show, status: :created, location: @poll_option }
-      else
-        format.html { render :new }
-        format.json { render json: @poll_option.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /poll_options/1
-  # PATCH/PUT /poll_options/1.json
-  def update
-    respond_to do |format|
-      if @poll_option.update(poll_option_params)
-        format.html { redirect_to @poll_option, notice: 'Poll option was successfully updated.' }
-        format.json { render :show, status: :ok, location: @poll_option }
-      else
-        format.html { render :edit }
-        format.json { render json: @poll_option.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  before_action :authenticate_helper
+  before_action :set_poll_option, only: [:destroy]
 
   # DELETE /poll_options/1
   # DELETE /poll_options/1.json
   def destroy
     @poll_option.destroy
     respond_to do |format|
-      format.html { redirect_to poll_options_url, notice: 'Poll option was successfully destroyed.' }
+      format.html { redirect_to admin_url(params[:poll_id]), notice: 'Poll option was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +17,11 @@ class PollOptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_poll_option
-      @poll_option = PollOption.find(params[:id])
+      @poll_option = PollOption.find(params[:option_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def poll_option_params
-      params.require(:poll_option).permit(:poll_id, :poll_id, :option, :priority)
+      params.require(:poll_option).permit(:poll_id, :option_id)
     end
 end
