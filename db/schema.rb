@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_191941) do
+ActiveRecord::Schema.define(version: 2019_09_12_213856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "poll_options", force: :cascade do |t|
     t.bigint "poll_id", null: false
-    t.string "option"
-    t.integer "priority"
+    t.string "option", null: false
+    t.integer "priority", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "votes"
+    t.integer "votes", default: 0, null: false
     t.index ["poll_id"], name: "index_poll_options_on_poll_id"
   end
 
