@@ -1,15 +1,10 @@
+<%= link_to 'Back', polls_path %>
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Name:</strong>
   <%= @poll.name %>
 </p>
-<% tt = 0 %>
-<% @poll.poll_options.each do |option| %>
-<p>
-    <strong><%= tt+=1 %></strong> <strong><%= option.option %></strong>
-</p>
-<% end %>
 
-<%= link_to 'Edit', edit_poll_path(@poll) %> |
-<%= link_to 'Back', polls_path %>
+<%= render 'form', poll: @poll %>

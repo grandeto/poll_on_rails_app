@@ -14,14 +14,8 @@
     <% @polls.each do |poll| %>
       <tr>
         <td><%= poll.name %></td>
-        <td><%= link_to 'Show', poll %></td>
-        <td><%= link_to 'Edit', edit_poll_path(poll) %></td>
-        <td><%= link_to 'Destroy', poll, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Vote', poll %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Poll', new_poll_path %>

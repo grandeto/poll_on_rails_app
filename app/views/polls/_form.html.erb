@@ -10,18 +10,21 @@
       </ul>
     </div>
   <% end %>
+  <%
+    total = 0
+    poll.poll_options.each do |option|
+      total+=option.votes
+    end
 
-  <div class="field">
-    <%= poll_form.label :name %>
-    <%= poll_form.text_field :name %>
-  </div>
-
+    percents = {}
+    poll.poll_options.each do |option|
+      percents[option.id] = ((option.votes.to_f / total.to_f) * 100).round(2).to_s
+    end
+  %>
   <%= poll_form.fields_for :poll_options do |poll_option_form| %>
     <div class="field">
-      <%= poll_option_form.label :option %>
-      <%= poll_option_form.text_field :option %>
-      <%= poll_option_form.label :priority %>
-      <%= poll_option_form.number_field :priority %>
+      <%= radio_button_tag(:votes, poll_option_form.object.id) %>
+      <%= label_tag("votes_#{poll_option_form.object.id}", 'Votes for ' + poll_option_form.object.option + ': ' + poll_option_form.object.votes.to_s + ' (' + percents[poll_option_form.object.id]) + ' %)' %>
     </div>
   <% end %>
 
