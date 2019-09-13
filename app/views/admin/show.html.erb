@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>Admin: Poll</h1>
+<p>
+  <strong>Name:</strong>
+  <%= @poll.name %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Priority</th>
+      <th>Votes</th>
+      <th>Delete option</th>
+    </tr>
+  </thead>
+  <% tt = 0 %>
+  <tbody>
+    <% @poll.poll_options.each do |option| %>
+      <tr>
+        <td><%= tt+=1 %></td>
+        <td><%= option.option %></td>
+        <td><%= option.priority %></td>
+        <td><%= option.votes %></td>
+        <td><%= link_to 'Delete', poll_option_url({:poll_id => @poll.id, :option_id => option.id}), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_admin_path(@poll) %> |
+<%= link_to 'Back', admin_index_path %>
