@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PollOnRailsApp</title>
+    <title>Poll On Rails</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,13 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <div id="main">
+        <div class="inner">
+            <%= link_to "Home", root_path %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
   </body>
 </html>
