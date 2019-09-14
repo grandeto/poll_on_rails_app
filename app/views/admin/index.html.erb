@@ -5,8 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Poll</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -14,8 +14,7 @@
     <% @polls.each do |poll| %>
       <tr>
         <td><%= poll.name %></td>
-        <td><%= link_to 'Show', admin_path(poll) %></td>
-        <td><%= link_to 'Edit', edit_admin_path(poll) %></td>
+        <td><%= link_to 'Show/Edit', admin_path(poll) %></td>
         <td><%= link_to 'Delete', admin_path(poll), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
