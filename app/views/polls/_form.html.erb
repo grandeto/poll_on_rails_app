@@ -18,7 +18,11 @@
 
     percents = {}
     poll.poll_options.each do |option|
-      percents[option.id] = ((option.votes.to_f / total.to_f) * 100).round(2).to_s
+      if option.votes.eql? 0
+        percents[option.id] = '-'
+      else
+        percents[option.id] = ((option.votes.to_f / total.to_f) * 100).round(2).to_s
+      end
     end
   %>
   <%= poll_form.fields_for :poll_options do |poll_option_form| %>
@@ -27,7 +31,7 @@
       <%= label_tag("votes_#{poll_option_form.object.id}", 'Votes for ' + poll_option_form.object.option + ': ' + poll_option_form.object.votes.to_s + ' (' + percents[poll_option_form.object.id]) + ' %)' %>
     </div>
   <% end %>
-
+  <div>Total votes: <%= total %></div>
   <div class="actions">
     <%= poll_form.submit %>
   </div>
