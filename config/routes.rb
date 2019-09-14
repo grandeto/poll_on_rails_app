@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#index'
+  get 'home/index'
   resources :poll_options
   resources :polls
   resources :admin
