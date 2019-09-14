@@ -23,7 +23,7 @@ class PollsController < ApplicationController
   def update
     if @poll_on_rails_voted_cookie.present?
       respond_to do |format|
-        format.html { redirect_to @poll, alert: 'Already Voted for this poll Cookie!' }
+        format.html { redirect_to @poll, alert: 'Vote not submitted. You already voted for this poll!' }
         format.json { render json: @poll.errors, status: :unprocessable_entity }
       end
       return
@@ -35,7 +35,8 @@ class PollsController < ApplicationController
 
     if @voted_ip.present?
       respond_to do |format|
-        format.html { redirect_to @poll, alert: 'Already Voted for this poll!' }
+        set_cookie
+        format.html { redirect_to @poll, alert: 'Vote not submitted. You already voted for this poll!' }
         format.json { render json: @poll.errors, status: :unprocessable_entity }
       end
       return
@@ -48,7 +49,7 @@ class PollsController < ApplicationController
         if @option.increment!(:votes)
           set_cookie
           @poll.ip_addresses.create({:ip_address => ip})
-          format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
+          format.html { redirect_to @poll, notice: 'Successfully voted!' }
           format.json { render :show, status: :ok, location: @poll }
         else
           format.html { render :edit }
