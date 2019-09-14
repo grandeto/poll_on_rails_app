@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_213856) do
+ActiveRecord::Schema.define(version: 2019_09_13_212411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ip_addresses", force: :cascade do |t|
+    t.bigint "poll_id", null: false
+    t.string "ip_address", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poll_id"], name: "index_ip_addresses_on_poll_id"
+  end
 
   create_table "poll_options", force: :cascade do |t|
     t.bigint "poll_id", null: false
@@ -31,5 +39,6 @@ ActiveRecord::Schema.define(version: 2019_09_12_213856) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "ip_addresses", "polls"
   add_foreign_key "poll_options", "polls"
 end
