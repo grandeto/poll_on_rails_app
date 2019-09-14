@@ -1,24 +1,17 @@
-# README
+# Poll On Rails - Simple Voting System
+## Pre Requirements: Ruby 2.6.3, Ruby on Rails 6.0.0, PostgreSQL 11.4
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation & Configuration
 
-Things you may want to cover:
+* Delete ```config/credentials.yml.enc```
 
-* Ruby version
+* Generate new credentials:
+```EDITOR="nano" bin/rails credentials:edit```
 
-* System dependencies
+* Add to ```config/credentials.yml.enc``` the credentials needed in ```config/database.yml``` and ```app/helpers/application_helper.rb```
 
-* Configuration
+* ```bundle install```
 
-* Database creation
+* ```rake db:setup```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* ```rails server```
