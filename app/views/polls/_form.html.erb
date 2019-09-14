@@ -19,7 +19,7 @@
     percents = {}
     poll.poll_options.each do |option|
       if option.votes.eql? 0
-        percents[option.id] = '-'
+        percents[option.id] = '0.00'
       else
         percents[option.id] = ((option.votes.to_f / total.to_f) * 100).round(2).to_s
       end
@@ -28,11 +28,11 @@
   <%= poll_form.fields_for :poll_options do |poll_option_form| %>
     <div class="field">
       <%= radio_button_tag(:votes, poll_option_form.object.id) %>
-      <%= label_tag("votes_#{poll_option_form.object.id}", 'Votes for ' + poll_option_form.object.option + ': ' + poll_option_form.object.votes.to_s + ' (' + percents[poll_option_form.object.id]) + ' %)' %>
+      <%= label_tag("votes_#{poll_option_form.object.id}", 'Votes for ' + poll_option_form.object.option + ': ' + poll_option_form.object.votes.to_s + ' (' + percents[poll_option_form.object.id] + '%)') %>
     </div>
   <% end %>
   <div>Total votes: <%= total %></div>
   <div class="actions">
-    <%= poll_form.submit %>
+    <%= poll_form.submit 'Vote' %>
   </div>
 <% end %>
