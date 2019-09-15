@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+polls = Poll.create([{ name: 'What is the name of your favourite epic movie?'}])
+PollOption.create(option: 'Lord of the Rings', priority: 1, poll: polls.first)
+PollOption.create(option: 'Game of Thrones', priority: 2, poll: polls.first)
