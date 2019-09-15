@@ -3423,6 +3423,6 @@ article div.content p {
   color: red;
 }
 
-.new-poll .fa-plus {
+.new-poll .fa-plus, .edit-poll .fa-plus {
   cursor: pointer;
 }

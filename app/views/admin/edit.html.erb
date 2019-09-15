@@ -3,3 +3,4 @@
 <%= render 'formEdit', poll: @poll %>
 
 <%= link_to 'Back', admin_path(@poll) %>
+<%= javascript_pack_tag 'admin/CreateUpdatePoll', 'data-turbolinks-track': 'reload' %>
