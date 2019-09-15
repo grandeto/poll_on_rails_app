@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
 <h1>Admin: Show/Edit Poll</h1>
 <p>
   <strong>Poll:</strong>
@@ -23,7 +24,7 @@
         <td><%= option.option %></td>
         <td><%= option.priority %></td>
         <td><%= option.votes %></td>
-        <td><%= link_to 'Delete', poll_option_url({:poll_id => @poll.id, :option_id => option.id}), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="delete-option"><%= link_to 'Delete', poll_option_url({:poll_id => @poll.id, :option_id => option.id}), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,3 +32,4 @@
 
 <%= link_to 'Edit', edit_admin_path(@poll) %> |
 <%= link_to 'Back', admin_index_path %>
+<%= javascript_pack_tag 'admin/DeletePollOption', 'data-turbolinks-track': 'reload' %>

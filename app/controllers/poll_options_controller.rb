@@ -7,6 +7,15 @@ class PollOptionsController < ApplicationController
   # DELETE /poll_options/1
   # DELETE /poll_options/1.json
   def destroy
+    @poll_options = PollOption.where(poll_id: params[:poll_id])
+    if @poll_options.count < 3
+      respond_to do |format|
+        format.html { redirect_to admin_url(params[:poll_id]), alert: 'Sorry, deleting poll options under two is not allowed.' }
+        format.json { render json: @poll_option.errors, status: :unprocessable_entity }
+      end
+      return
+    end
+
     @poll_option.destroy
     respond_to do |format|
       format.html { redirect_to admin_url(params[:poll_id]), notice: 'Poll option was successfully deleted.' }
